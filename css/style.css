@@ -1,0 +1,78 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: black;
+}
+#passwordGenerator {
+  margin: auto;
+  margin-top: 10%;
+  font-family: "Lucida Sans", "Lucida Sans Regular", Verdana, sans-serif;
+  background-image: linear-gradient(125deg, black, rgb(12, 12, 56));
+  background-repeat: no-repeat;
+  width: min-content;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px;
+  box-shadow: 0 0 10px limegreen;
+  border-radius: 15px;
+}
+h2 {
+  font-size: 1.5rem;
+  color: #fff;
+  white-space: nowrap;
+}
+h2 span {
+  color: limegreen;
+}
+.input_field {
+  margin-top: 1rem;
+  border: 1px solid limegreen;
+  width: 100%;
+  height: auto;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}
+input {
+  color: #fff;
+  background-color: transparent;
+  width: 100%;
+  outline: none;
+  border: none;
+}
+input::placeholder {
+  color: rgb(144, 159, 144);
+  font-weight: 600;
+}
+.input_field img {
+  width: 20px;
+  cursor: pointer;
+}
+button {
+  align-items: center;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 2px solid rgb(177, 177, 177);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  font-weight: 600;
+  height: 35px;
+  width: 150px;
+  margin-top: 0.7rem;
+  padding: 5px 30px;
+  transition: background 0.5s ease;
+}
+button:hover {
+  background-color: rgb(71, 166, 71);
+}
+button img {
+  margin-right: 12px;
+  width: 0.8rem;
+}
