@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 body {
-<<<<<<< HEAD
+  font-family: "Lucida Sans", "Lucida Sans Regular", Verdana, sans-serif;
   height: 90vh;
   width: 90%;
   margin: auto;
@@ -15,35 +15,15 @@ body {
   position: relative;
 }
 #passwordGenerator {
-  font-family: "Lucida Sans", "Lucida Sans Regular", Verdana, sans-serif;
   background-image: linear-gradient(125deg, rgb(6, 11, 19), rgb(12, 12, 56));
   background-repeat: no-repeat;
   width: 500px;
-=======
-  height: 100vh;
-  width: 90%;
-  margin: auto;
-  align-items: center;
-  background-color: black;
-  display: flex;
-  justify-content: center;
-}
-#passwordGenerator {
-  font-family: "Lucida Sans", "Lucida Sans Regular", Verdana, sans-serif;
-  background-image: linear-gradient(125deg, black, rgb(12, 12, 56));
-  background-repeat: no-repeat;
-  width: max-content;
->>>>>>> fbfdfb857b3ed9e215648be9a68015241361b6e0
   height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 30px;
-<<<<<<< HEAD
   box-shadow: 0 0 15px limegreen;
-=======
-  box-shadow: 0 0 10px limegreen;
->>>>>>> fbfdfb857b3ed9e215648be9a68015241361b6e0
   border-radius: 15px;
 }
 h2 {
@@ -62,19 +42,12 @@ h2 span {
   display: flex;
   align-items: center;
   border-radius: 5px;
-<<<<<<< HEAD
-  position: relative;
-=======
->>>>>>> fbfdfb857b3ed9e215648be9a68015241361b6e0
 }
 input {
   color: #fff;
   background-color: transparent;
   width: 100%;
-<<<<<<< HEAD
   padding: 0.4rem 0;
-=======
->>>>>>> fbfdfb857b3ed9e215648be9a68015241361b6e0
   padding-left: .5rem;
   outline: none;
   border: none;
@@ -84,13 +57,8 @@ input::placeholder {
   font-weight: 600;
 }
 .input_field img {
-<<<<<<< HEAD
   display: none;
   width: 18px;
-=======
-  width: 20px;
-  cursor: pointer;
->>>>>>> fbfdfb857b3ed9e215648be9a68015241361b6e0
 }
 button {
   align-items: center;
@@ -102,15 +70,9 @@ button {
   display: flex;
   font-weight: 600;
   height: 35px;
-<<<<<<< HEAD
   width: 120px;
   margin-top: 0.7rem;
   padding: 5px 20px;
-=======
-  width: 150px;
-  margin-top: 0.7rem;
-  padding: 5px 30px;
->>>>>>> fbfdfb857b3ed9e215648be9a68015241361b6e0
   transition: background 0.5s ease;
 }
 button:hover {
@@ -120,7 +82,6 @@ button img {
   margin-right: 12px;
   width: 0.8rem;
 }
-<<<<<<< HEAD
 
 #popup_overlay {
   background-image: linear-gradient(125deg, rgb(12, 12, 56), rgb(0, 0, 0));
@@ -147,5 +108,3 @@ button img {
 #popup_overlay span {
   color: wheat;
 }
-=======
->>>>>>> fbfdfb857b3ed9e215648be9a68015241361b6e0
