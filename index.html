@@ -10,16 +10,25 @@
     <div id="passwordGenerator">
       <h2>Generate a Random <br /><span>Password</span></h2>
       <div class="input_field">
-        <input type="text" name="pass" id="password" placeholder="Generate a password"/>
-        <img src="images/copy.png" alt="Copy icon" onfocus="clearThis(this)" onclick="copyPassword()" />
+        <input
+          type="text"
+          name="pass"
+          id="password"
+          placeholder="Generate a password"
+        />
+        <img
+          src="images/copy.png"
+          alt="Copy icon"
+          onfocus="clearThis(this)"
+          onclick="copyPassword()"
+        />
       </div>
       <button onclick="randomPassword()">
         <img src="images/generate.png" alt="lightning icon" />Generate
       </button>
     </div>
-    <div id="popup_overlay">
-      
-    </div>
+
+    <div id="popup_overlay"></div>
     <script src="js/script.js"></script>
   </body>
 </html>
