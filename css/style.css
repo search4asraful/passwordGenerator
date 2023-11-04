@@ -1,0 +1,111 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  height: 90vh;
+  width: 90%;
+  margin: auto;
+  align-items: center;
+  background-color: #17181b;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+#passwordGenerator {
+  font-family: "Lucida Sans", "Lucida Sans Regular", Verdana, sans-serif;
+  background-image: linear-gradient(125deg, rgb(6, 11, 19), rgb(12, 12, 56));
+  background-repeat: no-repeat;
+  width: 500px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px;
+  box-shadow: 0 0 15px limegreen;
+  border-radius: 15px;
+}
+h2 {
+  font-size: 1.5rem;
+  color: #fff;
+}
+h2 span {
+  color: limegreen;
+}
+.input_field {
+  margin-top: 1rem;
+  border: 1px solid #fff;
+  width: 100%;
+  height: auto;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  position: relative;
+}
+input {
+  color: #fff;
+  background-color: transparent;
+  width: 100%;
+  padding: 0.4rem 0;
+  padding-left: .5rem;
+  outline: none;
+  border: none;
+}
+input::placeholder {
+  color: rgb(144, 159, 144);
+  font-weight: 600;
+}
+.input_field img {
+  display: none;
+  width: 18px;
+}
+button {
+  align-items: center;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 2px solid rgb(177, 177, 177);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  font-weight: 600;
+  height: 35px;
+  width: 120px;
+  margin-top: 0.7rem;
+  padding: 5px 20px;
+  transition: background 0.5s ease;
+}
+button:hover {
+  background-color: rgb(71, 166, 71);
+}
+button img {
+  margin-right: 12px;
+  width: 0.8rem;
+}
+
+#popup_overlay {
+  background-image: linear-gradient(125deg, rgb(12, 12, 56), rgb(0, 0, 0));
+  background-repeat: no-repeat;
+  border-bottom: 2px solid limegreen;
+  border-radius: 5px;
+  bottom: 3rem;
+  color: gainsboro;
+  font-weight: 500;
+  line-height: 1.5;
+  max-width: 90%;
+  opacity: 0;
+  padding: .5rem 2.5rem;
+  position: fixed;
+  right: -100%;
+  transition: all 0.5s ease;
+  visibility: hidden;
+}
+#popup_overlay.popup_show {
+  right: 5%;
+  opacity: 1;
+  visibility: visible;
+}
+#popup_overlay span {
+  color: wheat;
+}
