@@ -21,14 +21,45 @@
           alt="Copy icon"
           onfocus="clearThis(this)"
           onclick="copyPassword()"
-        />
+          />
+          <div id="popup_overlay"></div>
+      </div>
+      <div id="options">
+        <label for="length">Generate a <input type="number" id="length" min="1" value="12" max="25"/> Length password</label><br><br>
+        <label>Characters used:</label>&nbsp;
+        <span class="charSetOption">
+          <input type="checkbox" id="uppercase" checked />
+          <label for="uppercase"> ABC</label>&nbsp;
+        </span>
+        <span class="charSetOption">
+          <input type="checkbox" id="lowercase" checked />
+          <label for="lowercase"> abc</label>&nbsp;
+        </span>
+        <span class="charSetOption">
+          <input type="checkbox" id="numbers" checked />
+          <label for="numbers"> 123</label>&nbsp;
+        </span>
+        <span class="charSetOption">
+          <input type="checkbox" id="symbols" checked />
+          <label for="symbols"> #&$</label>
+        </span>
       </div>
       <button onclick="randomPassword()">
         <img src="images/generate.png" alt="lightning icon" />Generate
       </button>
     </div>
 
-    <div id="popup_overlay"></div>
+    <div id="passwordHistory">
+      <h3>Generated passwords</h3>
+      <span id="passwordList"></span>
+      <button type="button" id="remove_pass" onclick="clearHistory()">
+        <img src="images/recycle-bin.svg" alt="recycle-bin" title="Clear history"/>
+      </button>
+    </div>
+    <footer>
+      <p>Created by <a href="https://www.facebook.com/search4asraful">Md Asraful islam</a></p>
+      <a href="https://github.com/search4asraful"><img src="images/github-icon.svg" alt="github"></a>
+    </footer>
     <script src="js/script.js"></script>
   </body>
 </html>
