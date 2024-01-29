@@ -28,6 +28,14 @@ function randomPassword(){
       
     let password = "";
         
+    window.addEventListener("beforeunload", function (event) {
+      // Check if there are passwords in session storage
+      let passwordsHistory = JSON.parse(sessionStorage.getItem("passwords")) || [];
+      if (passwordsHistory.length > 0) {
+        event.returnValue = true; // Display alert
+      }
+    });
+    
         while(length > password.length){
             password += allChars[Math.floor(Math.random() * allChars.length)];
         }
