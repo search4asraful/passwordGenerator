@@ -145,9 +145,9 @@ button img {
   border-radius: 10px;
   box-shadow: 0 0 10px #000 inset;
   color: #fff;
-  top: -60px;
+  top: -100px;
   left: 0;
-  height: 50px;
+  height: 90px;
   max-width: 500px;
   overflow-x: auto;
   padding: 1rem;
