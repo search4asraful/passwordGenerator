@@ -31,11 +31,20 @@ body {
   position: relative;
 }
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: #fff;
 }
 h2 span {
+  font-size: 1.4rem;
   color: limegreen;
+}
+label,
+span,
+input,
+input::placeholder,
+.footer-text {
+  font-size: 1rem;
+  color: #fff;
 }
 .input_field {
   margin-top: 1rem;
@@ -49,12 +58,11 @@ h2 span {
   position: relative;
 }
 .input_field > input {
-  font-size: 1rem;
   color: #fff;
   background-color: transparent;
   width: 100%;
-  padding: 0.4rem 0;
-  padding-left: .5rem;
+  padding: 0.2rem 0;
+  padding-left: 0.5rem;
   outline: none;
   border: none;
 }
@@ -69,20 +77,46 @@ h2 span {
 #options {
   margin: 1rem 0;
 }
-#options input[type=number] ,
-input[type=number]::-webkit-inner-spin-button{
+#options input[type="number"],
+input[type="number"]::-webkit-inner-spin-button {
   outline: none;
-  border: none;
+  border: 0;
   appearance: none;
   -webkit-appearance: none;
-  background-color: #fff;
-  box-shadow: 0 0 5px #000 inset;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  background-color: transparent;
   border-radius: 5px;
-  padding: .3rem 0;
+  padding: 0.3rem 0;
   text-align: center;
+}
+#options input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: white;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+}
+#options input[type="checkbox"]:checked {
+  background-color: #fff;
+  position: relative;
+}
+#options input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(15, 136, 15);
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
 }
 .charSetOption {
   white-space: nowrap;
+  display: block;
+  margin: 0.3rem;
 }
 button {
   align-items: center;
@@ -103,33 +137,26 @@ button:hover {
   background-color: rgb(71, 166, 71);
 }
 button img {
-  margin-right: 12px;
+  margin-right: 10px;
   width: 0.8rem;
 }
-
 #passwordHistory {
   background-color: #17181b;
   border-radius: 10px;
   box-shadow: 0 0 10px #000 inset;
   color: #fff;
-  display: none;
-  top: 7%;
-  min-height: 0;
-  max-height: 160px;
+  top: -60px;
+  left: 0;
+  height: 50px;
   max-width: 500px;
   overflow-x: auto;
   padding: 1rem;
   position: relative;
   position: absolute;
-  width: 95%;
+  width: 100%;
+  transition: all 0.3s ease;
 }
-#passwordHistory::-webkit-scrollbar{
-  display: none;
-}
-#passwordHistory > h3{
-  padding-bottom: 1rem;
-  font-size: 1.2rem;
-  color: limegreen;
+#passwordHistory::-webkit-scrollbar {
   display: none;
 }
 #passwordHistory > button {
@@ -139,42 +166,37 @@ button img {
   width: auto;
   border: none;
   margin: 0;
-  padding: .7rem;
+  padding: 0.5rem;
   background-color: #121212;
 }
 #passwordHistory button img {
-  width: 1.2rem;
+  width: 1rem;
   margin: 0;
 }
 #passwordList::before {
   content: "Recent :";
   color: limegreen;
+  margin-right: 15px;
 }
-#passwordList > span {
-  font-size: 1rem;
-  padding: 1rem;
-}
-
-#popup_overlay::before{
+#popup_overlay::before {
   content: "";
   width: 0;
-	height: 0;
-	border-left: 7px solid transparent;
-	border-right: 7px solid transparent;
-	border-top: 10px solid #007d1b;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 10px solid #007d1b;
   position: absolute;
   bottom: -8px;
   right: 10px;
 }
-#popup_overlay{
+#popup_overlay {
   position: absolute;
   background-color: #007d1b;
-  top: 0px;
+  top: 0;
   right: 0;
-  padding: .4rem;
-  font-size: .7rem;
+  padding: 0.2rem 0.4rem 0.4rem;
   border-radius: 5px;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   visibility: hidden;
   opacity: 0;
 }
@@ -184,6 +206,7 @@ button img {
   visibility: visible;
 }
 #popup_overlay span {
+  font-size: 0.7rem;
   color: #fff;
 }
 
@@ -203,14 +226,53 @@ footer a {
 }
 footer a > img {
   border-radius: 50%;
-  width: 45px;
+  width: 2.6rem;
+  height: 2.6rem;
   position: absolute;
   padding: 5px;
-  background-color: #4d4d4d;
+  background-color: #8e8e8e;
   right: 3%;
   bottom: 75px;
-  transition: background .5s;
+  transition: background 0.5s;
+  animation: pulse 2s ease-in-out infinite;
 }
 footer a > img:hover {
-  background-color: #fff;
+  background-color: #d8d8d8;
+}
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(116, 116, 116, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  h2,
+  h2 span {
+    font-size: 1rem;
+  }
+  label,
+  span,
+  input,
+  input::placeholder {
+    font-size: 0.9rem;
+  }
+  .footer-text {
+    font-size: 0.7rem;
+  }
+  footer a > img {
+    width: 2rem;
+    height: 2rem;
+    right: 5%;
+  }
 }

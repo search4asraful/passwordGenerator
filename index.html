@@ -10,14 +10,22 @@
       property="og:description"
       content="Generate a password for your precious account with a strong password to secure your account."
     />
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" >
-    <link rel="icon" href="images/favicon-16x16.png" type="image/x-icon" >
-    <link rel="icon" href="images/favicon-32x32.png" type="image/x-icon" >
-    <link rel="icon" href="images/apple-touch-icon.png" type="image/x-icon" >
-    <link rel="icon" href="images/android-chrome-192x192.png" type="image/x-icon" >
-    <link rel="icon" href="images/android-chrome-512x512.png" type="image/x-icon" >
-    <link rel="manifest" href="images/site.webmanifest">
-    
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="images/favicon-16x16.png" type="image/x-icon" />
+    <link rel="icon" href="images/favicon-32x32.png" type="image/x-icon" />
+    <link rel="icon" href="images/apple-touch-icon.png" type="image/x-icon" />
+    <link
+      rel="icon"
+      href="images/android-chrome-192x192.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="icon"
+      href="images/android-chrome-512x512.png"
+      type="image/x-icon"
+    />
+    <link rel="manifest" href="images/site.webmanifest" />
+
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
@@ -35,12 +43,15 @@
           alt="Copy icon"
           onfocus="clearThis(this)"
           onclick="copyPassword()"
-          />
-          <div id="popup_overlay"></div>
+        />
+        <div id="popup_overlay"></div>
       </div>
       <div id="options">
-        <label for="length">Generate a <input type="number" id="length" min="1" value="12" max="25"/> Length password</label><br><br>
-        <label>Characters used:</label>&nbsp;
+        <label for="length"
+          >Password length :
+          <input type="number" id="length" min="1" value="12" max="25" /></label
+        ><br /><br />
+        <label>Characters used:</label>
         <span class="charSetOption">
           <input type="checkbox" id="uppercase" checked />
           <label for="uppercase"> ABC</label>&nbsp;
@@ -61,18 +72,26 @@
       <button onclick="randomPassword()">
         <img src="images/generate.png" alt="lightning icon" />Generate
       </button>
+      <div id="passwordHistory">
+        <span id="passwordList"></span>
+        <button type="button" id="remove_pass" onclick="clearHistory()">
+          <img
+            src="images/recycle-bin.svg"
+            alt="recycle-bin"
+            title="Clear history"
+          />
+        </button>
+      </div>
     </div>
 
-    <div id="passwordHistory">
-      <h3>Generated passwords</h3>
-      <span id="passwordList"></span>
-      <button type="button" id="remove_pass" onclick="clearHistory()">
-        <img src="images/recycle-bin.svg" alt="recycle-bin" title="Clear history"/>
-      </button>
-    </div>
     <footer>
-      <p>Created by <a href="https://www.facebook.com/search4asraful">Md Asraful islam</a></p>
-      <a href="https://github.com/search4asraful"><img src="images/github-icon.svg" alt="github"></a>
+      <p class="footer-text">
+        ❤ Created by
+        <a href="https://www.facebook.com/search4asraful">Md Asraful islam</a>
+      </p>
+      <a href="https://github.com/search4asraful"
+        ><img src="images/github-icon.svg" alt="github"
+      /></a>
     </footer>
     <script src="js/script.js"></script>
   </body>
