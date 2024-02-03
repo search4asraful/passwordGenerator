@@ -173,10 +173,20 @@ button img {
   width: 1rem;
   margin: 0;
 }
-#passwordList::before {
-  content: "Recent :";
+#passwordList span::before {
+  content: "Previous :";
   color: limegreen;
   margin-right: 15px;
+}
+#passwordList span:nth-of-type(1)::before {
+  content: "Recent : {";
+  color: limegreen;
+  margin-right: 15px;
+}
+#passwordList span:nth-of-type(1)::after {
+  content: "}";
+  color: limegreen;
+  margin-left: 15px;
 }
 #popup_overlay::before {
   content: "";
