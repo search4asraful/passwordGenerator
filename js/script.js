@@ -82,7 +82,7 @@ function randomPassword(){
         // Display passwords in the passwordList span
         passwordList.innerHTML = passwordsHistory
         .reverse()
-        .map((password) => `${password}<br><br>`)
+        .map((password) => `<span>${password}</span><br><br>`)
         .join("");
         
         if (passwordsHistory.length > 0) {
