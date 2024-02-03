@@ -82,13 +82,13 @@ function randomPassword(){
         // Display passwords in the passwordList span
         passwordList.innerHTML = passwordsHistory
         .reverse()
-        .map((password) => `<span>${password}</span><br><br>`)
+        .map((password) => `${password}<br><br>`)
         .join("");
         
         if (passwordsHistory.length > 0) {
-            passwordHistory.style.display = "block";
+            passwordHistory.style.opacity = "1";
         }else{
-            passwordHistory.style.display = "none";
+            passwordHistory.style.opacity = "0";
         }
       }
       function clearHistory() {
