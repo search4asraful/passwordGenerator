@@ -1,101 +1,190 @@
-const passBox = document.getElementById("password");
-const copyimg = document.querySelector(".input_field img");
+const passwordInput = document.getElementById("password");
+const copyBtn = document.getElementById("copyBtn");
+const copyNotification = document.getElementById("copyNotification");
+const lengthInput = document.getElementById("length");
+const lengthSlider = document.getElementById("lengthSlider");
+const lengthValue = document.getElementById("lengthValue");
+const uppercaseCheck = document.getElementById("uppercase");
+const lowercaseCheck = document.getElementById("lowercase");
+const numbersCheck = document.getElementById("numbers");
+const symbolsCheck = document.getElementById("symbols");
+const generateBtn = document.getElementById("generateBtn");
+const passwordHistorySection = document.querySelector(".history-section");
 const passwordList = document.getElementById("passwordList");
+const clearHistoryBtn = document.getElementById("clearHistory");
+const strengthMeter = document.getElementById("strengthMeter");
+const strengthText = document.getElementById("strengthText");
+const themeToggle = document.getElementById("themeToggle");
+const themeIcon = document.getElementById("themeIcon");
+const body = document.body;
 
-// remember if using "readonly" attribute on markup than enable and disable not nessecary in JavaScript
-document.getElementById("password").disabled = true;
+// Character sets
+const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+const numbersChars = "0123456789";
+const symbolsChars = "!@#$%^&*()_+-=[]{}|;:,.<>?";
 
 
-function randomPassword(){
-    const length = parseInt(document.getElementById("length").value, 10);
-    const upercase = document.getElementById("uppercase").checked
-      ? "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-      : "";
-    const lowercase = document.getElementById("lowercase").checked
-      ? "abcdefghijklmnopqrstuvwxyz"
-      : "";
-    const number = document.getElementById("numbers").checked ? "1234567890" : "";
-    const symbol = document.getElementById("symbols").checked
-      ? "!@#$%^&*()_-+{}[]/"
-      : "";
-    
-    const allChars = upercase + lowercase + number +symbol;
+// Initialize
+let passwordHistory = JSON.parse(localStorage.getItem("passwordHistory")) || [];
+updatePasswordHistory();
+passwordHistorySection.style.display = passwordHistory.length < 1 ? "none" : "block";
 
-    if (allChars.length === 0) {
-        alert("Please select at least one character set.");
-        return;
-      }
-      
-    let password = "";
-        
-    window.addEventListener("beforeunload", function (event) {
-      // Check if there are passwords in session storage
-      let passwordsHistory = JSON.parse(sessionStorage.getItem("passwords")) || [];
-      if (passwordsHistory.length > 0) {
-        event.returnValue = true; // Display alert
-      }
+// Check for saved theme preference
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme === "retro") {
+  body.classList.add("retro-theme");
+  themeIcon.className = "fas fa-sun";
+}
+
+// Event Listeners
+generateBtn.addEventListener("click", generatePassword);
+copyBtn.addEventListener("click", copyPassword);
+clearHistoryBtn.addEventListener("click", clearHistory);
+themeToggle.addEventListener("click", toggleTheme);
+
+lengthInput.addEventListener("input", () => {
+  lengthSlider.value = lengthInput.value;
+  lengthValue.textContent = lengthInput.value;
+});
+
+lengthSlider.addEventListener("input", () => {
+  lengthInput.value = lengthSlider.value;
+  lengthValue.textContent = lengthSlider.value;
+});
+
+// Add click event to all option items to toggle checkbox
+document.querySelectorAll('.option-item').forEach(item => {
+    item.addEventListener('click', function() {
+        const checkbox = this.querySelector('input[type="checkbox"]');
+        checkbox.checked = !checkbox.checked;
     });
-    
-        while(length > password.length){
-            password += allChars[Math.floor(Math.random() * allChars.length)];
-        }
+});
 
-        // Store password in session storage
-        let passwordsHistory = JSON.parse(sessionStorage.getItem("passwords")) || [];
-        passwordsHistory.push(password);
-        sessionStorage.setItem("passwords", JSON.stringify(passwordsHistory));
+// Theme toggle function
+function toggleTheme() {
+  body.classList.toggle("retro-theme");
 
-        passBox.value = password;
+  if (body.classList.contains("retro-theme")) {
+    themeIcon.className = "fas fa-sun";
+    localStorage.setItem("theme", "retro");
+  } else {
+    themeIcon.className = "fas fa-moon";
+    localStorage.setItem("theme", "modern");
+  }
+}
 
-        copyimg.style.display = "block";
+// Generate password function
+function generatePassword() {
+  let length = parseInt(lengthInput.value);
+  let charset = "";
 
-        // Call display password history function
-        displayPasswordHistory();
-    };
+  if (uppercaseCheck.checked) charset += uppercaseChars;
+  if (lowercaseCheck.checked) charset += lowercaseChars;
+  if (numbersCheck.checked) charset += numbersChars;
+  if (symbolsCheck.checked) charset += symbolsChars;
 
-    function copyPassword(){
-        passBox.removeAttribute('disabled');
-        // temporary enable user input
+  if (charset === "") {
+    alert("Please select at least one character type!");
+    return;
+  }
 
-        passBox.select();
-        document.execCommand("copy");
+  let password = "";
+  for (let i = 0; i < length; i++) {
+    password += charset.charAt(Math.floor(Math.random() * charset.length));
+  }
 
-        passBox.setAttribute('disabled', true);
-        // than disable user input again
+  passwordInput.value = password;
+  updatePasswordHistory(password);
+  checkPasswordStrength(password);
+}
 
-        var popup = document.getElementById("popup_overlay");
+// Copy password function
+function copyPassword() {
+  if (!passwordInput.value) {
+    generatePassword();
+  }
 
-        popup.innerHTML = "<span>Copied</span>";
+  passwordInput.select();
+  document.execCommand("copy");
 
-        popup.classList.add("popup_show");
-        setTimeout(function() {
-            passBox.value = '';
-            copyimg.style.display = "none";
-            popup.classList.remove("popup_show");
-        }, 3000);
-    };
-    
-    function displayPasswordHistory() {
-        // Retrieve password history from session storage
-        let passwordsHistory = JSON.parse(sessionStorage.getItem("passwords")) || [];
-        
-        // Display passwords in the passwordList span
-        passwordList.innerHTML = passwordsHistory
-        .reverse()
-        .map((password) => `<span>${password}</span><br><br>`)
-        .join("");
-        
-        if (passwordsHistory.length > 0) {
-            passwordHistory.style.opacity = "1";
-        }else{
-            passwordHistory.style.opacity = "0";
-        }
-      }
-      function clearHistory() {
-        // Clear session storage and update password history
-        sessionStorage.removeItem("passwords");
-        displayPasswordHistory();
-      }
+  copyNotification.classList.add("show");
+  setTimeout(() => {
+    copyNotification.classList.remove("show");
+  }, 2000);
+}
 
-    // Display password history on page load
-    displayPasswordHistory();
+// Update password history
+function updatePasswordHistory(newPassword = null) {
+  if (newPassword) {
+    passwordHistory.unshift(newPassword);
+    if (passwordHistory.length > 5) {
+      passwordHistory.pop();
+    } else if (passwordHistory.length > 1) {
+      passwordHistorySection.style.display = "block";
+    }
+    localStorage.setItem("passwordHistory", JSON.stringify(passwordHistory));
+  }
+
+  passwordList.innerHTML = "";
+  passwordHistory.forEach((password) => {
+    const passwordItem = document.createElement("div");
+    passwordItem.classList.add("password-item");
+    passwordItem.textContent = password;
+    passwordItem.addEventListener("click", () => {
+      navigator.clipboard.writeText(password);
+      passwordItem.classList.add("copied");
+      setTimeout(() => {
+        passwordItem.classList.remove("copied");
+      }, 1500);
+    });
+    passwordList.appendChild(passwordItem);
+  });
+}
+
+// Clear history
+function clearHistory() {
+  passwordHistory = [];
+  localStorage.removeItem("passwordHistory");
+  passwordHistorySection.style.display = "none";
+  updatePasswordHistory();
+}
+
+// Check password strength
+function checkPasswordStrength(password) {
+  let strength = 0;
+
+  // Length contributes to strength
+  if (password.length >= 8) strength += 1;
+  if (password.length >= 12) strength += 1;
+
+  // Character variety contributes to strength
+  if (/[A-Z]/.test(password)) strength += 1;
+  if (/[a-z]/.test(password)) strength += 1;
+  if (/[0-9]/.test(password)) strength += 1;
+  if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+
+  // Update strength meter
+  strengthMeter.className = "strength-meter-fill";
+
+  if (strength <= 2) {
+    strengthMeter.classList.add("strength-weak");
+    strengthText.textContent = "Weak";
+    strengthText.style.color = "#ef4444";
+  } else if (strength <= 3) {
+    strengthMeter.classList.add("strength-fair");
+    strengthText.textContent = "Fair";
+    strengthText.style.color = "#f59e0b";
+  } else if (strength <= 4) {
+    strengthMeter.classList.add("strength-good");
+    strengthText.textContent = "Good";
+    strengthText.style.color = "#3b82f6";
+  } else {
+    strengthMeter.classList.add("strength-strong");
+    strengthText.textContent = "Strong";
+    strengthText.style.color = "#10b981";
+  }
+}
+
+// Generate initial password
+generatePassword();

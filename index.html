@@ -1,99 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Random Password Generator</title>
+    <title>Free Password Generator | Create Strong & Secure Passwords Instantly</title>
+    
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="Generate strong, secure passwords instantly with our free password generator. Customize length, characters, and create unhackable passwords for all your accounts.">
+    <meta name="keywords" content="password generator, strong password, secure password, create password, random password, password manager, online security, cyber security">
+    <meta name="author" content="Md Asraful Islam">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://secure-password.vercel.app/" />
+    
+    <!-- Open Graph tags for social sharing -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Free Password Generator | Create Strong & Secure Passwords Instantly" />
+    <meta property="og:description" content="Generate strong, secure passwords instantly with our free password generator. Customize length, characters, and create unhackable passwords for all your accounts." />
+    <meta property="og:url" content="https://secure-password.vercel.app/" />
     <meta property="og:site_name" content="Password Generator" />
-    <meta property="og:title" content="🔑 Secure password Generator" />
-    <meta property="og:image" content="images/siteThumbnail.webp" />
-    <meta
-      property="og:description"
-      content="Generate a password for your precious account with a strong password to secure your account."
-    />
+    <meta property="og:image" content="https://secure-password.vercel.app/images/siteThumbnail.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/webp" />
+    
+    <!-- Twitter Card tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Free Password Generator | Create Strong & Secure Passwords Instantly" />
+    <meta name="twitter:description" content="Generate strong, secure passwords instantly with our free password generator. Customize length, characters, and create unhackable passwords for all your accounts." />
+    <meta name="twitter:image" content="https://yourwebsite.com/images/siteThumbnail.webp" />
+    <meta name="twitter:creator" content="@yourtwitterhandle" />
+    
+    <!-- Favicon and app icons -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-    <link rel="icon" href="images/favicon-16x16.png" type="image/x-icon" />
-    <link rel="icon" href="images/favicon-32x32.png" type="image/x-icon" />
-    <link rel="icon" href="images/apple-touch-icon.png" type="image/x-icon" />
-    <link
-      rel="icon"
-      href="images/android-chrome-192x192.png"
-      type="image/x-icon"
-    />
-    <link
-      rel="icon"
-      href="images/android-chrome-512x512.png"
-      type="image/x-icon"
-    />
-    <link rel="manifest" href="images/site.webmanifest" />
-
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <div id="passwordGenerator">
-      <h2>Generate a Random <br /><span>Password</span></h2>
-      <div class="input_field">
-        <input
-          type="text"
-          name="pass"
-          id="password"
-          placeholder="Generate a password"
-        />
-        <img
-          src="images/copy.png"
-          alt="Copy icon"
-          onfocus="clearThis(this)"
-          onclick="copyPassword()"
-        />
-        <div id="popup_overlay"></div>
-      </div>
-      <div id="options">
-        <label for="length"
-          >Password length :
-          <input type="number" id="length" min="1" value="12" max="25" /></label
-        ><br /><br />
-        <label>Characters used:</label>
-        <span class="charSetOption">
-          <input type="checkbox" id="uppercase" checked />
-          <label for="uppercase"> ABC</label>&nbsp;
-        </span>
-        <span class="charSetOption">
-          <input type="checkbox" id="lowercase" checked />
-          <label for="lowercase"> abc</label>&nbsp;
-        </span>
-        <span class="charSetOption">
-          <input type="checkbox" id="numbers" checked />
-          <label for="numbers"> 123</label>&nbsp;
-        </span>
-        <span class="charSetOption">
-          <input type="checkbox" id="symbols" checked />
-          <label for="symbols"> #&$</label>
-        </span>
-      </div>
-      <button onclick="randomPassword()">
-        <img src="images/generate.png" alt="lightning icon" />Generate
-      </button>
-      <div id="passwordHistory">
-        <span id="passwordList"></span>
-        <button type="button" id="remove_pass" onclick="clearHistory()">
-          <img
-            src="images/recycle-bin.svg"
-            alt="recycle-bin"
-            title="Clear history"
-          />
-        </button>
-      </div>
+    <link rel="icon" href="images/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="icon" href="images/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+    <link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#6366f1" />
+    <meta name="msapplication-TileColor" content="#6366f1" />
+    <meta name="theme-color" content="#0f172a" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Password Generator",
+        "url": "https://yourwebsite.com/password-generator",
+        "description": "Generate strong, secure passwords instantly with our free password generator. Customize length, characters, and create unhackable passwords for all your accounts.",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "Web Browser",
+        "author": {
+            "@type": "Person",
+            "name": "Md Asraful Islam",
+            "url": "https://www.facebook.com/search4asraful"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "Md Asraful Islam",
+            "url": "https://www.facebook.com/search4asraful"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "inLanguage": "en",
+        "isAccessibleForFree": true,
+        "keywords": "password generator, strong password, secure password, create password, random password, password manager, online security, cyber security"
+    }
+    </script>
+    
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <i class="fas fa-moon" id="themeIcon" aria-hidden="true"></i>
     </div>
-
+    
+    <div class="container">
+        <header class="card">
+            <h1>Password Generator</h1>
+            <p class="subtitle">Create strong and secure passwords to keep your accounts safe</p>
+            
+            <section class="password-display" aria-label="Generated password">
+                <input type="text" class="password-input" id="password" placeholder="Generate a password" readonly aria-label="Generated password">
+                <button class="copy-btn" id="copyBtn" aria-label="Copy password">
+                    <i class="far fa-copy" aria-hidden="true"></i>
+                </button>
+                <div class="copy-notification" id="copyNotification" role="status" aria-live="polite">Copied to clipboard!</div>
+            </section>
+            
+            <div class="strength-meter" aria-label="Password strength">
+                <div class="strength-meter-fill" id="strengthMeter" aria-hidden="true"></div>
+            </div>
+            <div class="strength-text" id="strengthText" aria-live="polite"></div>
+            
+            <section class="options-section" aria-label="Password options">
+                <h2 class="section-title">
+                    <i class="fas fa-sliders-h" aria-hidden="true"></i>
+                    Customization Options
+                </h2>
+                
+                <div class="length-control">
+                    <label for="length" class="length-label">Password Length: <span id="lengthValue">12</span></label>
+                    <input type="number" class="length-input" id="length" min="6" max="32" value="12" aria-describedby="lengthDescription">
+                </div>
+                
+                <input type="range" class="length-slider" id="lengthSlider" min="6" max="32" value="12" aria-label="Password length slider">
+                <div id="lengthDescription" class="visually-hidden">Adjust the length of your password between 6 and 32 characters</div>
+                
+                <div class="options-grid">
+                    <div class="option-item">
+                        <label class="option-checkbox">
+                            <input type="checkbox" id="uppercase" checked>
+                            <span class="checkmark"></span>
+                        </label>
+                        <div class="option-label">
+                            <i class="fas fa-font option-icon" aria-hidden="true"></i>
+                            Uppercase (ABC)
+                        </div>
+                    </div>
+                    
+                    <div class="option-item">
+                        <label class="option-checkbox">
+                            <input type="checkbox" id="lowercase" checked>
+                            <span class="checkmark"></span>
+                        </label>
+                        <div class="option-label">
+                            <i class="fas fa-font option-icon" aria-hidden="true"></i>
+                            Lowercase (abc)
+                        </div>
+                    </div>
+                    
+                    <div class="option-item">
+                        <label class="option-checkbox">
+                            <input type="checkbox" id="numbers" checked>
+                            <span class="checkmark"></span>
+                        </label>
+                        <div class="option-label">
+                            <i class="fas fa-hashtag option-icon" aria-hidden="true"></i>
+                            Numbers (123)
+                        </div>
+                    </div>
+                    
+                    <div class="option-item">
+                        <label class="option-checkbox">
+                            <input type="checkbox" id="symbols" checked>
+                            <span class="checkmark"></span>
+                        </label>
+                        <div class="option-label">
+                            <i class="fas fa-asterisk option-icon" aria-hidden="true"></i>
+                            Symbols (#$&)
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <button class="generate-btn" id="generateBtn">
+                <i class="fas fa-sync-alt" aria-hidden="true"></i>
+                Generate Password
+            </button>
+        </header>
+        
+        <section class="history-section" aria-label="Password history">
+            <div class="history-header">
+                <h2 class="history-title">
+                    <i class="fas fa-history" aria-hidden="true"></i>
+                    Password History
+                </h2>
+                <button class="clear-btn" id="clearHistory" aria-label="Clear password history">
+                    <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                    Clear
+                </button>
+            </div>
+            <div class="password-list" id="passwordList" aria-live="polite"></div>
+        </section>
+    </div>
+    
     <footer>
-      <p class="footer-text">
-        ❤ Created by
-        <a href="https://www.facebook.com/search4asraful">Md Asraful islam</a>
-      </p>
-      <a href="https://github.com/search4asraful"
-        ><img src="images/github-icon.svg" alt="github"
-      /></a>
+        <p>Created with ❤️ by <a href="https://www.facebook.com/search4asraful">Md Asraful Islam</a></p>
+        <div class="social-links">
+            <a href="https://github.com/search4asraful" title="GitHub" aria-label="GitHub profile">
+                <i class="fab fa-github" aria-hidden="true"></i>
+            </a>
+            <a href="https://www.facebook.com/search4asraful" title="Facebook" aria-label="Facebook profile">
+                <i class="fab fa-facebook-f" aria-hidden="true"></i>
+            </a>
+        </div>
     </footer>
-    <script src="js/script.js"></script>
-  </body>
+
+    <script src="./js/script.js"></script>
+</body>
 </html>
